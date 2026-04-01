@@ -14,8 +14,8 @@ echo ""
 
 # Test 1: Verify Python version
 echo "[TEST 1] Verify Python 3.13 version"
-echo "Command: ${TEST_ENGINE} run --rm ${IMAGE} --version"
-VERSION_OUTPUT=$(${TEST_ENGINE} run --rm ${IMAGE} --version)
+echo "Command: ${TEST_ENGINE} run --rm ${IMAGE} python3 --version"
+VERSION_OUTPUT=$(${TEST_ENGINE} run --rm ${IMAGE} python3 --version)
 echo "Output: ${VERSION_OUTPUT}"
 if [[ "$VERSION_OUTPUT" == *"Python 3.13"* ]]; then
     echo "✓ PASSED - Python 3.13 detected"
@@ -27,8 +27,8 @@ echo ""
 
 # Test 2: Execute simple Python command
 echo "[TEST 2] Execute inline Python code"
-echo "Command: ${TEST_ENGINE} run --rm ${IMAGE} -c \"print('Hello, World!')\""
-OUTPUT=$(${TEST_ENGINE} run --rm ${IMAGE} -c "print('Hello, World!')")
+echo "Command: ${TEST_ENGINE} run --rm ${IMAGE} python3 -c \"print('Hello, World!')\""
+OUTPUT=$(${TEST_ENGINE} run --rm ${IMAGE} python3 -c "print('Hello, World!')")
 if [ "$OUTPUT" = "Hello, World!" ]; then
     echo "✓ PASSED - Python code execution works: $OUTPUT"
 else
@@ -40,8 +40,8 @@ echo ""
 # Test 3: Test Python standard library (json module)
 echo "[TEST 3] Test Python standard library access"
 PYTHON_CODE='import json; data={"test": 123}; print(json.dumps(data))'
-echo "Command: ${TEST_ENGINE} run --rm ${IMAGE} -c \"${PYTHON_CODE}\""
-JSON_OUTPUT=$(${TEST_ENGINE} run --rm ${IMAGE} -c "${PYTHON_CODE}")
+echo "Command: ${TEST_ENGINE} run --rm ${IMAGE} python3 -c \"${PYTHON_CODE}\""
+JSON_OUTPUT=$(${TEST_ENGINE} run --rm ${IMAGE} python3 -c "${PYTHON_CODE}")
 if [[ "$JSON_OUTPUT" == *'"test"'* ]] && [[ "$JSON_OUTPUT" == *'123'* ]]; then
     echo "✓ PASSED - Standard library (json) works: $JSON_OUTPUT"
 else
@@ -52,8 +52,8 @@ echo ""
 
 # Test 4: Run Python script from file
 echo "[TEST 4] Execute Python script file"
-echo "Command: ${TEST_ENGINE} run --rm -v \$(pwd)/test_script.py:/app/test.py:ro ${IMAGE} /app/test.py"
-SCRIPT_OUTPUT=$(${TEST_ENGINE} run --rm -v "$(pwd)/test_script.py:/app/test.py:ro" ${IMAGE} /app/test.py)
+echo "Command: ${TEST_ENGINE} run --rm -v \$(pwd)/test_script.py:/app/test.py:ro ${IMAGE} python3 /app/test.py"
+SCRIPT_OUTPUT=$(${TEST_ENGINE} run --rm -v "$(pwd)/test_script.py:/app/test.py:ro" ${IMAGE} python3 /app/test.py)
 if [[ "$SCRIPT_OUTPUT" == *"4 passed, 0 failed"* ]]; then
     echo "✓ PASSED - Python script execution successful"
     echo "Script output:"
