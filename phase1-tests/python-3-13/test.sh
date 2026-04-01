@@ -4,7 +4,7 @@
 
 set -euo pipefail
 
-IMAGE="quay.io/hummingbird/python-3-13:latest"
+IMAGE="quay.io/hummingbird/python:3.13"
 TEST_ENGINE="${TEST_ENGINE:-podman}"
 
 echo "=================================="

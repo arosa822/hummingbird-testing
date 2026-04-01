@@ -1,7 +1,7 @@
 # Phase 1 Test: python-3-13 image
 # Purpose: Verify Hummingbird python image can execute Python code
 
-FROM quay.io/hummingbird/python-3-13:latest
+FROM quay.io/hummingbird/python:3.13
 
 # Create a simple test Python script
 USER 0

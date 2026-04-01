@@ -1,7 +1,7 @@
 # Phase 1 Test: nodejs-22 image
 # Purpose: Verify Hummingbird Node.js image can execute JavaScript code
 
-FROM quay.io/hummingbird/nodejs-22:latest
+FROM quay.io/hummingbird/nodejs:22
 
 # Create a simple test Node.js script
 USER 0

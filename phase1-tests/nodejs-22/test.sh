@@ -4,7 +4,7 @@
 
 set -euo pipefail
 
-IMAGE="quay.io/hummingbird/nodejs-22:latest"
+IMAGE="quay.io/hummingbird/nodejs:22"
 TEST_ENGINE="${TEST_ENGINE:-podman}"
 
 echo "=================================="
