@@ -79,4 +79,20 @@ For GitHub Actions, GitLab CI, or other CI/CD platforms, ensure:
 2. Network access to quay.io is allowed
 3. Set `TEST_ENGINE=docker` if using Docker-based runners
 
-See `workflow-example.yml` for a complete GitHub Actions example.
+### GitHub Actions Example
+
+See `workflow-example.yml` in this directory for a complete GitHub Actions workflow.
+
+To use it:
+```bash
+# Create .github/workflows directory in your repo root
+mkdir -p .github/workflows
+
+# Copy the example
+cp phase1-tests/workflow-example.yml .github/workflows/phase1-tests.yml
+
+# Commit and push
+git add .github/workflows/phase1-tests.yml
+git commit -m "Add Phase 1 tests GitHub Actions workflow"
+git push
+```

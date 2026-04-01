@@ -1,0 +1,108 @@
+name: Phase 1 - Build Verification Tests
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'phase1-tests/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'phase1-tests/**'
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  test-curl:
+    name: Test curl Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run curl tests
+        working-directory: phase1-tests/curl
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-jq:
+    name: Test jq Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run jq tests
+        working-directory: phase1-tests/jq
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-nginx:
+    name: Test nginx Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run nginx tests
+        working-directory: phase1-tests/nginx
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-python:
+    name: Test python-3-13 Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run python-3-13 tests
+        working-directory: phase1-tests/python-3-13
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-nodejs:
+    name: Test nodejs-22 Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run nodejs-22 tests
+        working-directory: phase1-tests/nodejs-22
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  all-tests:
+    name: Run All Phase 1 Tests
+    runs-on: ubuntu-latest
+    needs: [test-curl, test-jq, test-nginx, test-python, test-nodejs]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run all tests
+        working-directory: phase1-tests
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x run-all-tests.sh
+          ./run-all-tests.sh
+
+      - name: Summary
+        if: success()
+        run: echo "✅ All Phase 1 tests passed successfully!"
