@@ -87,51 +87,116 @@ Project Hummingbird builds minimal, hardened, secure container images with reduc
 
 ---
 
-## Test Categories
+## Testing Phases
 
-### 1. Functional Tests
-Test that each image works as expected for its primary purpose.
+### Phase 1: Build Verification (CURRENT PHASE)
+**Goal:** Verify we can successfully build images using Hummingbird components.
 
-### 2. Security Tests
-- Vulnerability scanning (Syft/Grype)
-- CVE count verification
-- Non-root user verification
-- Attack surface analysis
+**Scope:**
+- Can we build the image from source?
+- Does the build complete without errors?
+- Can we run the image successfully?
+- Does basic functionality work?
 
-### 3. Compatibility Tests
-- Architecture support (amd64/arm64)
-- Variant testing (default vs builder)
-- Multi-stage build patterns
+**Selected Images for Phase 1 (5 images):**
+1. [ ] **curl** - Simple utility, test HTTP requests
+2. [ ] **jq** - JSON processor, test JSON parsing
+3. [ ] **nginx** - Web server, test serving static content
+4. [ ] **python-3-13** - Python runtime, test simple script execution
+5. [ ] **nodejs-22** - Node.js runtime, test simple JS execution
 
-### 4. Performance Tests
-- Image size verification
-- Startup time
-- Resource usage
+**Success Criteria:**
+- ✅ Image builds without errors
+- ✅ Image runs successfully
+- ✅ Basic functionality test passes
 
-### 5. Integration Tests
-- Multi-container scenarios
-- Volume mounting
-- Networking
+### Phase 2: Functional Testing (FUTURE)
+- Comprehensive functionality tests
+- Edge cases and error handling
+- Documentation verification
+
+### Phase 3: Security & Performance (FUTURE)
+- Vulnerability scanning
+- Performance benchmarks
+- Production readiness assessment
+
+---
+
+## Phase 1 Testing Steps
+
+For each selected image:
+
+1. **Explore Image Structure**
+   ```bash
+   cd /workspace/artifacts/containers/images/<image-name>
+   cat properties.yml          # View image configuration
+   cat Containerfile.j2        # View build template
+   cat test.sh                 # View existing tests
+   ```
+
+2. **Build the Image**
+   ```bash
+   cd /workspace/artifacts/containers
+
+   # Build specific image (e.g., curl)
+   ci/build_images.sh curl
+
+   # Build specific distro/variant
+   ci/build_images.sh curl/rawhide/default
+
+   # Build with verbose output
+   ci/build_images.sh --verbose curl
+   ```
+
+3. **Run Basic Functionality Test**
+   ```bash
+   # curl example
+   podman run --rm quay.io/hummingbird/curl:latest https://example.com
+
+   # jq example
+   echo '{"name":"test"}' | podman run --rm -i quay.io/hummingbird/jq:latest '.name'
+
+   # nginx example (requires setup)
+   podman run --rm -p 8080:8080 quay.io/hummingbird/nginx:latest
+
+   # python example
+   podman run --rm quay.io/hummingbird/python-3-13:latest -c "print('Hello')"
+
+   # nodejs example
+   podman run --rm quay.io/hummingbird/nodejs-22:latest -e "console.log('Hello')"
+   ```
+
+4. **Run Built-in Tests** (if available)
+   ```bash
+   cd /workspace/artifacts/containers
+   ci/run_tests_container.sh <image-name>
+   ```
+
+5. **Document Results**
+   - Build success/failure
+   - Build time
+   - Any errors encountered
+   - Basic functionality test results
+   - Image size (check with `podman images`)
 
 ---
 
 ## Testing Tools Available
 
+- **Makefile** - Build automation (`make <image-name>`)
 - **ci/run_tests_container.sh** - Functional test runner
-- **ci/syft-hummingbird.sh** - SBOM generation
-- **ci/grype-hummingbird.sh** - Vulnerability scanning
-- **Makefile** - Build and test automation
-- **report.json / report.md** - Existing vulnerability reports
+- **podman/docker** - Container runtime for testing
 
 ---
 
-## Next Steps
+## Current Focus
 
-1. [ ] Define test priorities (which images to test first)
-2. [ ] Determine test scope (functional, security, or both)
-3. [ ] Identify specific test scenarios for each image category
-4. [ ] Create test execution plan
-5. [ ] Define success criteria
+**Phase 1 Priority Images:**
+1. curl - Simplest utility
+2. jq - Simple JSON tool
+3. nginx - Common web server
+4. python-3-13 - Popular language runtime
+5. nodejs-22 - Popular language runtime
 
 ---
 
