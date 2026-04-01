@@ -2,6 +2,12 @@
 
 This directory contains Phase 1 build verification tests for 5 selected Hummingbird container images.
 
+## Prerequisites
+
+**Required:** Podman or Docker must be installed to run these tests.
+
+See [PREREQUISITES.md](PREREQUISITES.md) for detailed installation instructions and requirements.
+
 ## Goal
 
 Verify we can successfully build and run basic images using Hummingbird components.
