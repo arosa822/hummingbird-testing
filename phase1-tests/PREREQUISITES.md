@@ -38,6 +38,29 @@ Tests require internet access to:
 - Pull images from `quay.io/hummingbird/*`
 - Test HTTP/HTTPS endpoints (example.com, httpbin.org, google.com)
 
+## Quay.io Authentication
+
+The Hummingbird images on quay.io require authentication to pull.
+
+### For Local Testing
+
+Log in to quay.io before running tests:
+```bash
+# With podman
+podman login quay.io
+
+# With docker
+docker login quay.io
+```
+
+Enter your quay.io credentials when prompted.
+
+### For GitHub Actions
+
+Configure `QUAY_USERNAME` and `QUAY_PASSWORD` as GitHub repository secrets.
+
+See [QUAY-CREDENTIALS-SETUP.md](QUAY-CREDENTIALS-SETUP.md) for detailed instructions.
+
 ## Running Tests
 
 ### With Podman (default)
