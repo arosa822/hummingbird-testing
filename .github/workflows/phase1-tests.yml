@@ -19,6 +19,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+
       - name: Run curl tests
         working-directory: phase1-tests/curl
         env:
@@ -33,6 +40,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
 
       - name: Run jq tests
         working-directory: phase1-tests/jq
@@ -49,6 +63,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+
       - name: Run nginx tests
         working-directory: phase1-tests/nginx
         env:
@@ -63,6 +84,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
 
       - name: Run python-3-13 tests
         working-directory: phase1-tests/python-3-13
@@ -79,6 +107,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+
       - name: Run nodejs-22 tests
         working-directory: phase1-tests/nodejs-22
         env:
@@ -94,6 +129,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
 
       - name: Run all tests
         working-directory: phase1-tests
