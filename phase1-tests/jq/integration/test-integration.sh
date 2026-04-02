@@ -24,7 +24,7 @@ trap cleanup EXIT
 echo "[TEST 1] Build data processing app using Hummingbird jq as base"
 echo "Command: ${TEST_ENGINE} build -t ${IMAGE_NAME}:${BUILD_TAG} ."
 
-if ${TEST_ENGINE} build -t ${IMAGE_NAME}:${BUILD_TAG} . > /dev/null 2>&1; then
+if ${TEST_ENGINE} build -t ${IMAGE_NAME}:${BUILD_TAG} .; then
     echo "✓ PASSED - Data processing application built successfully"
 else
     echo "✗ FAILED - Failed to build data processing application"

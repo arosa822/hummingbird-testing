@@ -17,7 +17,7 @@ echo ""
 echo "[TEST 1] Build application using Hummingbird curl as base"
 echo "Command: ${TEST_ENGINE} build -t ${IMAGE_NAME}:${BUILD_TAG} ."
 
-if ${TEST_ENGINE} build -t ${IMAGE_NAME}:${BUILD_TAG} . > /dev/null 2>&1; then
+if ${TEST_ENGINE} build -t ${IMAGE_NAME}:${BUILD_TAG} .; then
     echo "✓ PASSED - Application image built successfully"
 else
     echo "✗ FAILED - Failed to build application image"

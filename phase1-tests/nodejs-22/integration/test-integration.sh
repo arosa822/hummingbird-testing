@@ -28,7 +28,7 @@ trap cleanup EXIT
 echo "[TEST 1] Build Express API using Hummingbird Node.js as base"
 echo "Command: ${TEST_ENGINE} build -t ${IMAGE_NAME}:${BUILD_TAG} ."
 
-if ${TEST_ENGINE} build -t ${IMAGE_NAME}:${BUILD_TAG} . > /dev/null 2>&1; then
+if ${TEST_ENGINE} build -t ${IMAGE_NAME}:${BUILD_TAG} .; then
     echo "✓ PASSED - Express application image built successfully"
 else
     echo "✗ FAILED - Failed to build Express application image"
