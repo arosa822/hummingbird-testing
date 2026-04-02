@@ -1,0 +1,24 @@
+# Integration test: Use Hummingbird curl as a drop-in replacement for curl
+# Validates that the image works untouched in a real service stack
+#
+# The curl image is used as-is to fetch data from a target service,
+# proving it can replace mainstream curl images in automation pipelines.
+
+services:
+  # Target service that curl will interact with
+  target:
+    image: docker.io/library/nginx:alpine
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:80/"]
+      interval: 2s
+      timeout: 5s
+      retries: 5
+
+  # Hummingbird curl — used untouched as a drop-in replacement
+  curl:
+    image: quay.io/hummingbird/curl:latest
+    depends_on:
+      target:
+        condition: service_healthy
+    # curl entrypoint is /usr/bin/curl, so command becomes curl args
+    command: ["-s", "-o", "/dev/null", "-w", "%{http_code}", "http://target:80/"]

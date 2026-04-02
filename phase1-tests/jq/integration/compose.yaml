@@ -1,0 +1,15 @@
+# Integration test: Use Hummingbird jq as a drop-in replacement for jq
+# Validates that the image works untouched in a real data processing pipeline
+#
+# The jq image is used as-is to process JSON data files mounted as volumes,
+# proving it can replace mainstream jq images in data pipelines.
+
+services:
+  # Hummingbird jq — used untouched as a drop-in replacement
+  # Data files are volume-mounted (read-only), image is not modified
+  jq:
+    image: quay.io/hummingbird/jq:latest
+    volumes:
+      - ./data:/data:ro
+    # Default: extract active users (overridden per-test in test-integration.sh)
+    command: [".[] | select(.active == true) | {name, email}", "/data/users.json"]

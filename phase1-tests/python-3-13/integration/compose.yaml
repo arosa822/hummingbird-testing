@@ -1,0 +1,35 @@
+# Integration test: Use Hummingbird Python as a drop-in replacement for python
+# Validates that the image works untouched as a production Python runtime
+#
+# A builder init service installs dependencies (Flask) into a shared volume.
+# The Hummingbird Python image then runs the app with that volume mounted,
+# proving it can replace mainstream Python images in real deployments.
+
+services:
+  # Builder: installs pip dependencies into a shared volume
+  # Uses the mainstream Python image (has shell + pip) for setup only
+  deps:
+    image: docker.io/library/python:3.13-slim
+    volumes:
+      - pip-packages:/deps
+    command: ["pip", "install", "--target=/deps", "--no-cache-dir", "flask==3.0.0"]
+
+  # Hummingbird Python — used untouched as a drop-in replacement
+  # App code is volume-mounted, pre-installed deps are in the shared volume
+  app:
+    image: quay.io/hummingbird/python:3.13
+    depends_on:
+      deps:
+        condition: service_completed_successfully
+    environment:
+      - PYTHONPATH=/deps
+    volumes:
+      - ./app.py:/app/app.py:ro
+      - pip-packages:/deps:ro
+    working_dir: /app
+    ports:
+      - "8080:8080"
+    command: ["python3.13", "/app/app.py"]
+
+volumes:
+  pip-packages:

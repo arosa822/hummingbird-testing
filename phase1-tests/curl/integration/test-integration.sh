@@ -1,76 +1,90 @@
 #!/bin/bash
-# Integration test for curl image
-# Tests building and running a real application using curl as base
+# Integration test for Hummingbird curl image
+# Tests the image as a drop-in replacement in a real service stack
+#
+# Approach: The Hummingbird curl image is used UNTOUCHED — no custom
+# Dockerfile, no modifications. We spin up a target service and use
+# the curl image to interact with it, just like you would in a real
+# automation pipeline or sidecar pattern.
 
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "${SCRIPT_DIR}"
+
 TEST_ENGINE="${TEST_ENGINE:-podman}"
-IMAGE_NAME="hummingbird-curl-integration-test"
-BUILD_TAG="latest"
+COMPOSE_CMD="${TEST_ENGINE}-compose"
 
 echo "=========================================="
-echo "curl Integration Test"
+echo "curl Integration Test (compose-based)"
 echo "=========================================="
 echo ""
 
-# Test 1: Build the application image
-echo "[TEST 1] Build application using Hummingbird curl as base"
-echo "Command: ${TEST_ENGINE} build -t ${IMAGE_NAME}:${BUILD_TAG} ."
+# Cleanup function
+cleanup() {
+    echo "[CLEANUP] Tearing down services..."
+    ${COMPOSE_CMD} down --volumes --remove-orphans 2>/dev/null || true
+}
+trap cleanup EXIT
 
-if ${TEST_ENGINE} build -t ${IMAGE_NAME}:${BUILD_TAG} . > /dev/null 2>&1; then
-    echo "✓ PASSED - Application image built successfully"
+# Test 1: Compose stack comes up and curl can reach the target service
+echo "[TEST 1] Start compose stack and verify curl can reach target"
+echo "Command: ${COMPOSE_CMD} up --abort-on-container-exit"
+
+OUTPUT=$(${COMPOSE_CMD} up --abort-on-container-exit 2>&1)
+
+if echo "$OUTPUT" | grep -q "200"; then
+    echo "✓ PASSED - Hummingbird curl successfully reached target service (HTTP 200)"
 else
-    echo "✗ FAILED - Failed to build application image"
-    exit 1
-fi
-echo ""
-
-# Test 2: Run the application (default location)
-echo "[TEST 2] Run application with default parameters"
-echo "Command: ${TEST_ENGINE} run --rm ${IMAGE_NAME}:${BUILD_TAG}"
-
-OUTPUT=$(${TEST_ENGINE} run --rm ${IMAGE_NAME}:${BUILD_TAG} 2>&1)
-
-if echo "$OUTPUT" | grep -q "Application completed successfully"; then
-    echo "✓ PASSED - Application ran successfully"
-    echo "Sample output:"
-    echo "$OUTPUT" | grep -A 2 "Current Weather:"
-else
-    echo "✗ FAILED - Application did not complete successfully"
+    echo "✗ FAILED - curl could not reach target service"
     echo "Output: $OUTPUT"
     exit 1
 fi
 echo ""
 
-# Test 3: Run application with custom parameter
-echo "[TEST 3] Run application with custom location"
-echo "Command: ${TEST_ENGINE} run --rm ${IMAGE_NAME}:${BUILD_TAG} London"
+# Test 2: Verify curl version works
+echo "[TEST 2] Verify curl --version works"
+echo "Command: ${COMPOSE_CMD} run --rm curl --version"
 
-LONDON_OUTPUT=$(${TEST_ENGINE} run --rm ${IMAGE_NAME}:${BUILD_TAG} London 2>&1)
+VERSION_OUTPUT=$(${COMPOSE_CMD} run --rm curl --version 2>&1)
 
-if echo "$LONDON_OUTPUT" | grep -q "Fetching weather for: London"; then
-    echo "✓ PASSED - Application accepts custom parameters"
+if echo "$VERSION_OUTPUT" | grep -q "curl"; then
+    echo "✓ PASSED - curl version detected"
+    echo "Version: $(echo "$VERSION_OUTPUT" | head -n1)"
 else
-    echo "✗ FAILED - Application did not accept custom parameters"
-    echo "Output: $LONDON_OUTPUT"
+    echo "✗ FAILED - Could not detect curl version"
+    echo "Output: $VERSION_OUTPUT"
     exit 1
 fi
 echo ""
 
-# Test 4: Verify application fetches multiple data sources
-echo "[TEST 4] Verify application fetches from multiple APIs"
+# Test 3: HTTPS support (fetch from external endpoint)
+echo "[TEST 3] Verify HTTPS/TLS support"
+echo "Command: ${COMPOSE_CMD} run --rm curl -k -s -o /dev/null -w '%{http_code}' https://example.com"
 
-if echo "$OUTPUT" | grep -q "IP Data:"; then
-    echo "✓ PASSED - Application successfully fetches from multiple sources"
+HTTPS_CODE=$(${COMPOSE_CMD} run --rm curl -k -s -o /dev/null -w '%{http_code}' https://example.com 2>&1 | tail -1)
+
+if [ "$HTTPS_CODE" = "200" ] || [ "$HTTPS_CODE" = "301" ] || [ "$HTTPS_CODE" = "302" ]; then
+    echo "✓ PASSED - HTTPS connection successful (HTTP ${HTTPS_CODE})"
 else
-    echo "✗ FAILED - Application did not fetch from all expected sources"
+    echo "✗ FAILED - HTTPS connection failed: ${HTTPS_CODE}"
     exit 1
 fi
 echo ""
 
-# Cleanup
-echo "[CLEANUP] Removing test image"
-${TEST_ENGINE} rmi ${IMAGE_NAME}:${BUILD_TAG} > /dev/null 2>&1 || true
+# Test 4: Fetch JSON from API (proves curl works for real API automation)
+echo "[TEST 4] Fetch JSON from API endpoint"
+echo "Command: ${COMPOSE_CMD} run --rm curl -k -s https://httpbin.org/json"
+
+JSON_OUTPUT=$(${COMPOSE_CMD} run --rm curl -k -s https://httpbin.org/json 2>&1)
+
+if echo "$JSON_OUTPUT" | grep -q "slideshow"; then
+    echo "✓ PASSED - Successfully fetched JSON response"
+else
+    echo "✗ FAILED - Did not receive expected JSON content"
+    echo "Output: $JSON_OUTPUT"
+    exit 1
+fi
 echo ""
 
 echo "=========================================="
@@ -78,10 +92,10 @@ echo "All integration tests PASSED!"
 echo "=========================================="
 echo ""
 echo "Summary:"
-echo "  ✓ Built real application using curl image"
-echo "  ✓ Application runs successfully"
-echo "  ✓ Accepts custom parameters"
-echo "  ✓ Fetches data from multiple APIs"
+echo "  ✓ Hummingbird curl used as drop-in replacement (untouched image)"
+echo "  ✓ Successfully reached services within compose network"
+echo "  ✓ HTTPS/TLS support works"
+echo "  ✓ JSON API fetching works"
 echo ""
-echo "This validates that Hummingbird curl image can be"
-echo "used as a base for building production applications."
+echo "This validates that Hummingbird curl can replace"
+echo "mainstream curl images in automation and service stacks."

@@ -1,0 +1,35 @@
+# Integration test: Use Hummingbird Node.js as a drop-in replacement for node
+# Validates that the image works untouched as a production Node.js runtime
+#
+# A builder init service installs npm dependencies into a shared volume.
+# The Hummingbird Node.js image then runs the Express app with that volume
+# mounted, proving it can replace mainstream Node.js images in real deployments.
+
+services:
+  # Builder: installs npm dependencies into a shared volume
+  # Uses the mainstream Node.js image (has shell + npm) for setup only
+  deps:
+    image: docker.io/library/node:22-slim
+    volumes:
+      - node-modules:/deps/node_modules
+      - ./package.json:/deps/package.json:ro
+    working_dir: /deps
+    command: ["npm", "install", "--production", "--no-audit"]
+
+  # Hummingbird Node.js — used untouched as a drop-in replacement
+  # App code is volume-mounted, pre-installed deps are in the shared volume
+  app:
+    image: quay.io/hummingbird/nodejs:22
+    depends_on:
+      deps:
+        condition: service_completed_successfully
+    volumes:
+      - ./server.js:/app/server.js:ro
+      - node-modules:/app/node_modules:ro
+    working_dir: /app
+    ports:
+      - "8080:8080"
+    command: ["node", "server.js"]
+
+volumes:
+  node-modules:

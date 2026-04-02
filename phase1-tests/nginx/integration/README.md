@@ -2,22 +2,16 @@
 
 ## Purpose
 
-Validates that the Hummingbird nginx image can be used to serve real static websites with custom configuration.
+Validates that the Hummingbird nginx image works as a **drop-in replacement** for mainstream nginx images for hosting production websites. The image is used completely untouched — no custom Dockerfile, no modifications.
 
-## Application
+## Approach
 
-**Static Website** - A complete single-page application with:
-- HTML, CSS, and JavaScript files
-- Custom nginx configuration
-- Health check endpoint
-- JSON API endpoint
-- Security headers
-- Gzip compression
+Uses `podman-compose` to run the Hummingbird nginx image with custom configuration and static files volume-mounted, just like you would deploy nginx in production with Kubernetes ConfigMaps or Docker Compose volumes.
 
 ## Files
 
-- `Dockerfile` - Builds website using nginx image as base
-- `nginx.conf` - Custom nginx configuration
+- `compose.yaml` - Defines the nginx service with volume-mounted config and content
+- `nginx.conf` - Custom nginx configuration (non-root port, gzip, security headers)
 - `index.html` - Main website page
 - `style.css` - Stylesheet
 - `app.js` - JavaScript for interactive features
@@ -26,41 +20,28 @@ Validates that the Hummingbird nginx image can be used to serve real static webs
 
 ## What It Tests
 
-1. **Build with Custom Config** - Can we customize nginx.conf?
-2. **Server Startup** - Does nginx start and serve files?
-3. **HTML Serving** - Can it serve the main page?
-4. **CSS Serving** - Are stylesheets served correctly?
-5. **JavaScript Serving** - Is JavaScript delivered?
-6. **Health Endpoint** - Custom health check works?
-7. **JSON API** - Can nginx return JSON responses?
-8. **Gzip Compression** - Is compression enabled?
+1. **Server startup** - nginx starts and serves content
+2. **HTTP status** - Returns 200 for valid requests
+3. **CSS serving** - Stylesheets delivered correctly
+4. **JavaScript serving** - JS files delivered correctly
+5. **Health endpoint** - Custom `/health` endpoint works
+6. **JSON API** - Custom `/api/status` endpoint returns JSON
+7. **Gzip compression** - Compression is enabled
 
 ## Running the Test
 
 ```bash
 cd phase1-tests/nginx/integration
-chmod +x test-integration.sh
-./test-integration.sh
+bash test-integration.sh
+
+# Or with docker
+TEST_ENGINE=docker bash test-integration.sh
 ```
 
 ## Real-World Relevance
 
-This test validates that the nginx image is suitable for:
+This test validates that the Hummingbird nginx image can replace mainstream nginx images for:
 - Static website hosting
 - Single-page applications (SPAs)
-- Documentation sites
-- Landing pages
-- Asset serving (CSS, JS, images)
-
-## Configuration Features
-
-- Non-root port (8080)
-- Security headers (X-Frame-Options, X-XSS-Protection)
-- Gzip compression
-- Custom error pages
-- Health check endpoint
-- JSON API endpoints
-
-## Cleanup
-
-The test automatically removes all resources after completion.
+- Reverse proxy deployments
+- API gateway configurations
