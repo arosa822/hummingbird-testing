@@ -69,7 +69,7 @@ jobs:
         env:
           TEST_ENGINE: docker
         run: |
-          chmod +x test-integration.sh process-data.sh
+          chmod +x test-integration.sh
           ./test-integration.sh
 
   test-nginx:

@@ -14,7 +14,12 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "${SCRIPT_DIR}"
 
 TEST_ENGINE="${TEST_ENGINE:-podman}"
-COMPOSE_CMD="${TEST_ENGINE}-compose"
+# Detect compose command: "docker compose" (plugin) vs "docker-compose" / "podman-compose"
+if [ "${TEST_ENGINE}" = "docker" ] && docker compose version >/dev/null 2>&1; then
+    COMPOSE_CMD="docker compose"
+else
+    COMPOSE_CMD="${TEST_ENGINE}-compose"
+fi
 
 echo "=========================================="
 echo "Node.js Integration Test (compose-based)"
