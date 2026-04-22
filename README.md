@@ -32,7 +32,7 @@ TEST_ENGINE=docker bash phase1-tests/curl/test.sh
 
 ## Image Catalog
 
-44 images across 7 categories. **5 tested** in Phase 1.
+44 images across 7 categories. **15 tested** in Phase 1.
 
 ### Utilities & Tools
 
@@ -40,7 +40,7 @@ TEST_ENGINE=docker bash phase1-tests/curl/test.sh
 |-------|----------|--------|
 | curl | `quay.io/hummingbird/curl:latest` | Tested |
 | jq | `quay.io/hummingbird/jq:latest` | Tested |
-| git | `quay.io/hummingbird/git:latest` | |
+| git | `quay.io/hummingbird/git:latest` | Tested |
 | memcached | `quay.io/hummingbird/memcached:latest` | |
 | minio | `quay.io/hummingbird/minio:latest` | |
 | minio-client | `quay.io/hummingbird/minio-client:latest` | |
@@ -50,9 +50,9 @@ TEST_ENGINE=docker bash phase1-tests/curl/test.sh
 | Image | Registry | Status |
 |-------|----------|--------|
 | nginx | `quay.io/hummingbird/nginx:latest` | Tested |
-| caddy | `quay.io/hummingbird/caddy:latest` | |
-| haproxy | `quay.io/hummingbird/haproxy:latest` | |
-| httpd | `quay.io/hummingbird/httpd:latest` | |
+| caddy | `quay.io/hummingbird/caddy:latest` | Tested |
+| haproxy | `quay.io/hummingbird/haproxy:latest` | Tested |
+| httpd | `quay.io/hummingbird/httpd:latest` | Tested |
 
 ### Language Runtimes
 
@@ -60,13 +60,13 @@ TEST_ENGINE=docker bash phase1-tests/curl/test.sh
 |-------|----------|--------|
 | python-3-13 | `quay.io/hummingbird/python:3.13` | Tested |
 | nodejs-22 | `quay.io/hummingbird/nodejs:22` | Tested |
-| python-3-11 | `quay.io/hummingbird/python:3.11` | |
-| python-3-12 | `quay.io/hummingbird/python:3.12` | |
+| python-3-11 | `quay.io/hummingbird/python:3.11` | Tested |
+| python-3-12 | `quay.io/hummingbird/python:3.12` | Tested |
 | python-3-14 | `quay.io/hummingbird/python:3.14` | |
-| nodejs-20 | `quay.io/hummingbird/nodejs:20` | |
+| nodejs-20 | `quay.io/hummingbird/nodejs:20` | Tested |
 | nodejs-24 | `quay.io/hummingbird/nodejs:24` | |
 | nodejs-25 | `quay.io/hummingbird/nodejs:25` | |
-| go-1-25 | `quay.io/hummingbird/go:1.25` | |
+| go-1-25 | `quay.io/hummingbird/go:1.25` | Tested |
 | go-1-26 | `quay.io/hummingbird/go:1.26` | |
 | rust | `quay.io/hummingbird/rust:latest` | |
 | php | `quay.io/hummingbird/php:latest` | |
@@ -96,8 +96,8 @@ TEST_ENGINE=docker bash phase1-tests/curl/test.sh
 |-------|----------|--------|
 | mariadb-10-11 | `quay.io/hummingbird/mariadb:10.11` | |
 | mariadb-11-8 | `quay.io/hummingbird/mariadb:11.8` | |
-| postgresql | `quay.io/hummingbird/postgresql:latest` | |
-| valkey | `quay.io/hummingbird/valkey:latest` | |
+| postgresql | `quay.io/hummingbird/postgresql:latest` | Tested |
+| valkey | `quay.io/hummingbird/valkey:latest` | Tested |
 
 ### Application Servers
 
@@ -120,24 +120,22 @@ TEST_ENGINE=docker bash phase1-tests/curl/test.sh
 
 ```
 phase1-tests/
-├── run-all-tests.sh            # Run all 5 image tests
-├── curl/
-│   ├── test.sh                 # 4 smoke tests
-│   └── README.md
-├── jq/
-│   ├── test.sh
-│   └── README.md
-├── nginx/
-│   ├── test.sh
-│   └── README.md
-├── python-3-13/
-│   ├── test.sh
-│   ├── test_script.py
-│   └── README.md
-└── nodejs-22/
-    ├── test.sh
-    ├── test_script.js
-    └── README.md
+├── run-all-tests.sh            # Run all 15 image tests
+├── curl/test.sh                # 4 smoke tests each
+├── jq/test.sh
+├── nginx/test.sh
+├── python-3-13/test.sh + test_script.py
+├── nodejs-22/test.sh + test_script.js
+├── git/test.sh
+├── httpd/test.sh
+├── caddy/test.sh
+├── haproxy/test.sh + haproxy.cfg
+├── python-3-11/test.sh + test_script.py
+├── python-3-12/test.sh + test_script.py
+├── nodejs-20/test.sh + test_script.js
+├── go-1-25/test.sh + test_program.go
+├── postgresql/test.sh
+└── valkey/test.sh
 ```
 
 Each image has 4 tests:
