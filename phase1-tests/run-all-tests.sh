@@ -4,7 +4,7 @@
 set -euo pipefail
 
 TEST_ENGINE="${TEST_ENGINE:-podman}"
-IMAGES=("curl" "jq" "nginx" "python-3-13" "nodejs-22" "git" "httpd" "caddy" "haproxy" "python-3-11" "python-3-12" "nodejs-20" "go-1-25" "postgresql" "valkey")
+IMAGES=("curl" "jq" "nginx" "python-3-13" "nodejs-22" "git" "httpd" "caddy" "haproxy" "python-3-11" "python-3-12" "nodejs-20" "go-1-25" "postgresql" "valkey" "memcached" "python-3-14" "nodejs-24" "go-1-26" "rust" "ruby-3-4" "openjdk-21" "mariadb-10-11" "php" "tomcat-10")
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 PASSED=0
