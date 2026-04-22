@@ -1,11 +1,10 @@
 #!/bin/bash
 # Run all Phase 1 tests for Hummingbird images
-# This script executes tests for all 5 selected images
 
 set -euo pipefail
 
 TEST_ENGINE="${TEST_ENGINE:-podman}"
-IMAGES=("curl" "jq" "nginx" "python-3-13" "nodejs-22")
+IMAGES=("curl" "jq" "nginx" "python-3-13" "nodejs-22" "git" "httpd" "caddy" "haproxy" "python-3-11" "python-3-12" "nodejs-20" "go-1-25" "postgresql" "valkey")
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 PASSED=0
