@@ -22,8 +22,8 @@ trap cleanup EXIT
 # Test 1: Verify haproxy version
 echo "[TEST 1] Verify haproxy version"
 echo "Command: ${TEST_ENGINE} run --rm --entrypoint '' ${IMAGE} haproxy -v"
-VERSION_OUTPUT=$(${TEST_ENGINE} run --rm --entrypoint '' ${IMAGE} haproxy -v 2>&1 | head -1)
-echo "Output: ${VERSION_OUTPUT}"
+VERSION_OUTPUT=$(${TEST_ENGINE} run --rm --entrypoint '' ${IMAGE} haproxy -v 2>&1)
+echo "Output: ${VERSION_OUTPUT%%$'\n'*}"
 if [[ "$VERSION_OUTPUT" == *"HAProxy"* ]]; then
     echo "✓ PASSED - HAProxy version detected"
 else
