@@ -7,6 +7,7 @@ set -euo pipefail
 IMAGE="quay.io/hummingbird/nginx:latest"
 TEST_ENGINE="${TEST_ENGINE:-podman}"
 CONTAINER_NAME="hummingbird-nginx-test-$$"
+HOST_PORT=$(( (RANDOM % 10000) + 20000 ))
 
 echo "=================================="
 echo "Phase 1: nginx Image Tests"
@@ -22,8 +23,8 @@ trap cleanup EXIT
 
 # Test 1: Start nginx container
 echo "[TEST 1] Start nginx container"
-echo "Command: ${TEST_ENGINE} run -d --name ${CONTAINER_NAME} -p 8080:8080 ${IMAGE}"
-${TEST_ENGINE} run -d --name ${CONTAINER_NAME} -p 8080:8080 ${IMAGE} > /dev/null
+echo "Command: ${TEST_ENGINE} run -d --name ${CONTAINER_NAME} -p ${HOST_PORT}:8080 ${IMAGE}"
+${TEST_ENGINE} run -d --name ${CONTAINER_NAME} -p ${HOST_PORT}:8080 ${IMAGE} > /dev/null
 sleep 2  # Give nginx time to start
 if ${TEST_ENGINE} ps | grep -q ${CONTAINER_NAME}; then
     echo "✓ PASSED - nginx container started successfully"
@@ -35,11 +36,11 @@ echo ""
 
 # Test 2: Check nginx is listening
 echo "[TEST 2] Verify nginx is serving content"
-echo "Command: curl -s http://localhost:8080/"
+echo "Command: curl -s http://127.0.0.1:${HOST_PORT}/"
 MAX_RETRIES=5
 RETRY=0
 while [ $RETRY -lt $MAX_RETRIES ]; do
-    if HTTP_RESPONSE=$(curl -s http://localhost:8080/ 2>/dev/null); then
+    if HTTP_RESPONSE=$(curl -s http://127.0.0.1:${HOST_PORT}/ 2>/dev/null); then
         if [[ "$HTTP_RESPONSE" == *"nginx"* ]] || [[ "$HTTP_RESPONSE" == *"Welcome"* ]]; then
             echo "✓ PASSED - nginx is serving content"
             echo "Response snippet: ${HTTP_RESPONSE:0:100}..."
@@ -58,8 +59,8 @@ echo ""
 
 # Test 3: Check HTTP status code
 echo "[TEST 3] Verify HTTP 200 status code"
-echo "Command: curl -s -o /dev/null -w '%{http_code}' http://localhost:8080/"
-HTTP_CODE=$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8080/)
+echo "Command: curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:${HOST_PORT}/"
+HTTP_CODE=$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:${HOST_PORT}/)
 if [ "$HTTP_CODE" = "200" ]; then
     echo "✓ PASSED - Got HTTP 200 response"
 else

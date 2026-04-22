@@ -52,8 +52,8 @@ echo ""
 
 # Test 4: Run Node.js script from file
 echo "[TEST 4] Execute Node.js script file"
-echo "Command: ${TEST_ENGINE} run --rm -v \$(pwd)/test_script.js:/app/test.js:ro ${IMAGE} /app/test.js"
-SCRIPT_OUTPUT=$(${TEST_ENGINE} run --rm -v "$(pwd)/test_script.js:/app/test.js:ro" ${IMAGE} /app/test.js)
+echo "Command: ${TEST_ENGINE} run --rm -v \$(pwd)/test_script.js:/app/test.js:ro,z ${IMAGE} /app/test.js"
+SCRIPT_OUTPUT=$(${TEST_ENGINE} run --rm -v "$(pwd)/test_script.js:/app/test.js:ro,z" ${IMAGE} /app/test.js)
 if [[ "$SCRIPT_OUTPUT" == *"4 passed, 0 failed"* ]]; then
     echo "✓ PASSED - Node.js script execution successful"
     echo "Script output:"

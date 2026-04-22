@@ -52,8 +52,8 @@ echo ""
 
 # Test 4: Run Python script from file
 echo "[TEST 4] Execute Python script file"
-echo "Command: ${TEST_ENGINE} run --rm -v \$(pwd)/test_script.py:/app/test.py:ro ${IMAGE} python3 /app/test.py"
-SCRIPT_OUTPUT=$(${TEST_ENGINE} run --rm -v "$(pwd)/test_script.py:/app/test.py:ro" ${IMAGE} python3 /app/test.py)
+echo "Command: ${TEST_ENGINE} run --rm -v \$(pwd)/test_script.py:/app/test.py:ro,z ${IMAGE} python3 /app/test.py"
+SCRIPT_OUTPUT=$(${TEST_ENGINE} run --rm -v "$(pwd)/test_script.py:/app/test.py:ro,z" ${IMAGE} python3 /app/test.py)
 if [[ "$SCRIPT_OUTPUT" == *"4 passed, 0 failed"* ]]; then
     echo "✓ PASSED - Python script execution successful"
     echo "Script output:"
