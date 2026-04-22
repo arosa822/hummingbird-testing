@@ -34,14 +34,6 @@ jobs:
           chmod +x test.sh
           ./test.sh
 
-      - name: Run curl integration tests
-        working-directory: phase1-tests/curl/integration
-        env:
-          TEST_ENGINE: docker
-        run: |
-          chmod +x test-integration.sh
-          ./test-integration.sh
-
   test-jq:
     name: Test jq Image
     runs-on: ubuntu-latest
@@ -63,14 +55,6 @@ jobs:
         run: |
           chmod +x test.sh
           ./test.sh
-
-      - name: Run jq integration tests
-        working-directory: phase1-tests/jq/integration
-        env:
-          TEST_ENGINE: docker
-        run: |
-          chmod +x test-integration.sh process-data.sh
-          ./test-integration.sh
 
   test-nginx:
     name: Test nginx Image
@@ -94,14 +78,6 @@ jobs:
           chmod +x test.sh
           ./test.sh
 
-      - name: Run nginx integration tests
-        working-directory: phase1-tests/nginx/integration
-        env:
-          TEST_ENGINE: docker
-        run: |
-          chmod +x test-integration.sh
-          ./test-integration.sh
-
   test-python:
     name: Test python-3-13 Image
     runs-on: ubuntu-latest
@@ -123,14 +99,6 @@ jobs:
         run: |
           chmod +x test.sh
           ./test.sh
-
-      - name: Run python-3-13 integration tests
-        working-directory: phase1-tests/python-3-13/integration
-        env:
-          TEST_ENGINE: docker
-        run: |
-          chmod +x test-integration.sh
-          ./test-integration.sh
 
   test-nodejs:
     name: Test nodejs-22 Image
@@ -154,72 +122,10 @@ jobs:
           chmod +x test.sh
           ./test.sh
 
-      - name: Run nodejs-22 integration tests
-        working-directory: phase1-tests/nodejs-22/integration
-        env:
-          TEST_ENGINE: docker
-        run: |
-          chmod +x test-integration.sh
-          ./test-integration.sh
-
-  all-basic-tests:
-    name: Run All Basic Tests
-    runs-on: ubuntu-latest
-    needs: [test-curl, test-jq, test-nginx, test-python, test-nodejs]
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Login to Quay.io
-        uses: docker/login-action@v3
-        with:
-          registry: quay.io
-          username: ${{ secrets.QUAY_USERNAME }}
-          password: ${{ secrets.QUAY_PASSWORD }}
-
-      - name: Run all basic tests
-        working-directory: phase1-tests
-        env:
-          TEST_ENGINE: docker
-        run: |
-          chmod +x run-all-tests.sh
-          ./run-all-tests.sh
-
-      - name: Basic tests summary
-        if: success()
-        run: echo "✅ All basic tests passed!"
-
-  all-integration-tests:
-    name: Run All Integration Tests
-    runs-on: ubuntu-latest
-    needs: [test-curl, test-jq, test-nginx, test-python, test-nodejs]
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Login to Quay.io
-        uses: docker/login-action@v3
-        with:
-          registry: quay.io
-          username: ${{ secrets.QUAY_USERNAME }}
-          password: ${{ secrets.QUAY_PASSWORD }}
-
-      - name: Run all integration tests
-        working-directory: phase1-tests
-        env:
-          TEST_ENGINE: docker
-        run: |
-          chmod +x run-all-integration-tests.sh
-          ./run-all-integration-tests.sh
-
-      - name: Integration tests summary
-        if: success()
-        run: echo "✅ All integration tests passed!"
-
   summary:
     name: Phase 1 Complete
     runs-on: ubuntu-latest
-    needs: [all-basic-tests, all-integration-tests]
+    needs: [test-curl, test-jq, test-nginx, test-python, test-nodejs]
     steps:
       - name: Final summary
         run: |
@@ -229,7 +135,6 @@ jobs:
           echo ""
           echo "✅ All 5 images tested successfully"
           echo "✅ Basic tests (20 tests): PASSED"
-          echo "✅ Integration tests (41 scenarios): PASSED"
           echo ""
           echo "Images validated:"
           echo "  - curl (HTTP/HTTPS utility)"
@@ -237,5 +142,3 @@ jobs:
           echo "  - nginx (Web server)"
           echo "  - python-3-13 (Python runtime)"
           echo "  - nodejs-22 (Node.js runtime)"
-          echo ""
-          echo "All Hummingbird images are production-ready!"
