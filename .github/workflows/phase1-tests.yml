@@ -342,10 +342,230 @@ jobs:
           chmod +x test.sh
           ./test.sh
 
+  test-memcached:
+    name: Test memcached Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+
+      - name: Run memcached basic tests
+        working-directory: phase1-tests/memcached
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-python-3-14:
+    name: Test python-3-14 Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+
+      - name: Run python-3-14 basic tests
+        working-directory: phase1-tests/python-3-14
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-nodejs-24:
+    name: Test nodejs-24 Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+
+      - name: Run nodejs-24 basic tests
+        working-directory: phase1-tests/nodejs-24
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-go-1-26:
+    name: Test go-1-26 Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+
+      - name: Run go-1-26 basic tests
+        working-directory: phase1-tests/go-1-26
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-rust:
+    name: Test rust Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+
+      - name: Run rust basic tests
+        working-directory: phase1-tests/rust
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-ruby-3-4:
+    name: Test ruby-3-4 Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+
+      - name: Run ruby-3-4 basic tests
+        working-directory: phase1-tests/ruby-3-4
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-openjdk-21:
+    name: Test openjdk-21 Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+
+      - name: Run openjdk-21 basic tests
+        working-directory: phase1-tests/openjdk-21
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-mariadb-10-11:
+    name: Test mariadb-10-11 Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+
+      - name: Run mariadb-10-11 basic tests
+        working-directory: phase1-tests/mariadb-10-11
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-php:
+    name: Test php Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+
+      - name: Run php basic tests
+        working-directory: phase1-tests/php
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-tomcat-10:
+    name: Test tomcat-10 Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+
+      - name: Run tomcat-10 basic tests
+        working-directory: phase1-tests/tomcat-10
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
   summary:
     name: Phase 1 Complete
     runs-on: ubuntu-latest
-    needs: [test-curl, test-jq, test-nginx, test-python, test-nodejs, test-git, test-httpd, test-caddy, test-haproxy, test-python-3-11, test-python-3-12, test-nodejs-20, test-go-1-25, test-postgresql, test-valkey]
+    needs: [test-curl, test-jq, test-nginx, test-python, test-nodejs, test-git, test-httpd, test-caddy, test-haproxy, test-python-3-11, test-python-3-12, test-nodejs-20, test-go-1-25, test-postgresql, test-valkey, test-memcached, test-python-3-14, test-nodejs-24, test-go-1-26, test-rust, test-ruby-3-4, test-openjdk-21, test-mariadb-10-11, test-php, test-tomcat-10]
     steps:
       - name: Final summary
         run: |
@@ -353,22 +573,5 @@ jobs:
           echo "Phase 1 Tests Complete!"
           echo "=========================================="
           echo ""
-          echo "All 15 images tested successfully"
-          echo "Basic tests (60 tests): PASSED"
-          echo ""
-          echo "Images validated:"
-          echo "  - curl (HTTP/HTTPS utility)"
-          echo "  - jq (JSON processor)"
-          echo "  - nginx (Web server)"
-          echo "  - python-3-13 (Python runtime)"
-          echo "  - nodejs-22 (Node.js runtime)"
-          echo "  - git (Version control)"
-          echo "  - httpd (Apache web server)"
-          echo "  - caddy (Web server)"
-          echo "  - haproxy (Load balancer)"
-          echo "  - python-3-11 (Python runtime)"
-          echo "  - python-3-12 (Python runtime)"
-          echo "  - nodejs-20 (Node.js runtime)"
-          echo "  - go-1-25 (Go toolchain)"
-          echo "  - postgresql (Database)"
-          echo "  - valkey (Key-value store)"
+          echo "All 25 images tested successfully"
+          echo "Basic tests (100 tests): PASSED"

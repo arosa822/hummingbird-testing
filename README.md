@@ -32,7 +32,7 @@ TEST_ENGINE=docker bash phase1-tests/curl/test.sh
 
 ## Image Catalog
 
-44 images across 7 categories. **15 tested** in Phase 1.
+44 images across 7 categories. **25 tested** in Phase 1.
 
 ### Utilities & Tools
 
@@ -41,7 +41,7 @@ TEST_ENGINE=docker bash phase1-tests/curl/test.sh
 | curl | `quay.io/hummingbird/curl:latest` | Tested |
 | jq | `quay.io/hummingbird/jq:latest` | Tested |
 | git | `quay.io/hummingbird/git:latest` | Tested |
-| memcached | `quay.io/hummingbird/memcached:latest` | |
+| memcached | `quay.io/hummingbird/memcached:latest` | Tested |
 | minio | `quay.io/hummingbird/minio:latest` | |
 | minio-client | `quay.io/hummingbird/minio-client:latest` | |
 
@@ -62,18 +62,18 @@ TEST_ENGINE=docker bash phase1-tests/curl/test.sh
 | nodejs-22 | `quay.io/hummingbird/nodejs:22` | Tested |
 | python-3-11 | `quay.io/hummingbird/python:3.11` | Tested |
 | python-3-12 | `quay.io/hummingbird/python:3.12` | Tested |
-| python-3-14 | `quay.io/hummingbird/python:3.14` | |
+| python-3-14 | `quay.io/hummingbird/python:3.14` | Tested |
 | nodejs-20 | `quay.io/hummingbird/nodejs:20` | Tested |
-| nodejs-24 | `quay.io/hummingbird/nodejs:24` | |
+| nodejs-24 | `quay.io/hummingbird/nodejs:24` | Tested |
 | nodejs-25 | `quay.io/hummingbird/nodejs:25` | |
 | go-1-25 | `quay.io/hummingbird/go:1.25` | Tested |
-| go-1-26 | `quay.io/hummingbird/go:1.26` | |
-| rust | `quay.io/hummingbird/rust:latest` | |
-| php | `quay.io/hummingbird/php:latest` | |
+| go-1-26 | `quay.io/hummingbird/go:1.26` | Tested |
+| rust | `quay.io/hummingbird/rust:latest` | Tested |
+| php | `quay.io/hummingbird/php:latest` | Tested |
 | ruby-3-3 | `quay.io/hummingbird/ruby:3.3` | |
-| ruby-3-4 | `quay.io/hummingbird/ruby:3.4` | |
+| ruby-3-4 | `quay.io/hummingbird/ruby:3.4` | Tested |
 | ruby-4-0 | `quay.io/hummingbird/ruby:4.0` | |
-| openjdk-21 | `quay.io/hummingbird/openjdk:21` | |
+| openjdk-21 | `quay.io/hummingbird/openjdk:21` | Tested |
 | openjdk-25 | `quay.io/hummingbird/openjdk:25` | |
 
 ### .NET / ASP.NET
@@ -94,7 +94,7 @@ TEST_ENGINE=docker bash phase1-tests/curl/test.sh
 
 | Image | Registry | Status |
 |-------|----------|--------|
-| mariadb-10-11 | `quay.io/hummingbird/mariadb:10.11` | |
+| mariadb-10-11 | `quay.io/hummingbird/mariadb:10.11` | Tested |
 | mariadb-11-8 | `quay.io/hummingbird/mariadb:11.8` | |
 | postgresql | `quay.io/hummingbird/postgresql:latest` | Tested |
 | valkey | `quay.io/hummingbird/valkey:latest` | Tested |
@@ -103,7 +103,7 @@ TEST_ENGINE=docker bash phase1-tests/curl/test.sh
 
 | Image | Registry | Status |
 |-------|----------|--------|
-| tomcat-10 | `quay.io/hummingbird/tomcat:10` | |
+| tomcat-10 | `quay.io/hummingbird/tomcat:10` | Tested |
 | tomcat-11 | `quay.io/hummingbird/tomcat:11` | |
 
 ### Specialized
@@ -120,7 +120,7 @@ TEST_ENGINE=docker bash phase1-tests/curl/test.sh
 
 ```
 phase1-tests/
-├── run-all-tests.sh            # Run all 15 image tests
+├── run-all-tests.sh            # Run all 25 image tests
 ├── curl/test.sh                # 4 smoke tests each
 ├── jq/test.sh
 ├── nginx/test.sh
@@ -135,7 +135,17 @@ phase1-tests/
 ├── nodejs-20/test.sh + test_script.js
 ├── go-1-25/test.sh + test_program.go
 ├── postgresql/test.sh
-└── valkey/test.sh
+├── valkey/test.sh
+├── memcached/test.sh
+├── python-3-14/test.sh + test_script.py
+├── nodejs-24/test.sh + test_script.js
+├── go-1-26/test.sh + test_program.go
+├── rust/test.sh + test_program.rs
+├── ruby-3-4/test.sh + test_script.rb
+├── openjdk-21/test.sh + TestProgram.java
+├── mariadb-10-11/test.sh
+├── php/test.sh + test_script.php
+└── tomcat-10/test.sh
 ```
 
 Each image has 4 tests:
