@@ -38,10 +38,10 @@ TEST_ENGINE=docker bash phase1-tests/curl/test.sh
 
 | Image | Registry | Status |
 |-------|----------|--------|
-| curl | `quay.io/hummingbird/curl:latest` | Tested |
-| jq | `quay.io/hummingbird/jq:latest` | Tested |
-| git | `quay.io/hummingbird/git:latest` | Tested |
-| memcached | `quay.io/hummingbird/memcached:latest` | Tested |
+| [curl](docs/test-details.md#curl) | `quay.io/hummingbird/curl:latest` | Tested |
+| [jq](docs/test-details.md#jq) | `quay.io/hummingbird/jq:latest` | Tested |
+| [git](docs/test-details.md#git) | `quay.io/hummingbird/git:latest` | Tested |
+| [memcached](docs/test-details.md#memcached) | `quay.io/hummingbird/memcached:latest` | Tested |
 | minio | `quay.io/hummingbird/minio:latest` | |
 | minio-client | `quay.io/hummingbird/minio-client:latest` | |
 
@@ -49,31 +49,31 @@ TEST_ENGINE=docker bash phase1-tests/curl/test.sh
 
 | Image | Registry | Status |
 |-------|----------|--------|
-| nginx | `quay.io/hummingbird/nginx:latest` | Tested |
-| caddy | `quay.io/hummingbird/caddy:latest` | Tested |
-| haproxy | `quay.io/hummingbird/haproxy:latest` | Tested |
-| httpd | `quay.io/hummingbird/httpd:latest` | Tested |
+| [nginx](docs/test-details.md#nginx) | `quay.io/hummingbird/nginx:latest` | Tested |
+| [caddy](docs/test-details.md#caddy) | `quay.io/hummingbird/caddy:latest` | Tested |
+| [haproxy](docs/test-details.md#haproxy) | `quay.io/hummingbird/haproxy:latest` | Tested |
+| [httpd](docs/test-details.md#httpd) | `quay.io/hummingbird/httpd:latest` | Tested |
 
 ### Language Runtimes
 
 | Image | Registry | Status |
 |-------|----------|--------|
-| python-3-13 | `quay.io/hummingbird/python:3.13` | Tested |
-| nodejs-22 | `quay.io/hummingbird/nodejs:22` | Tested |
-| python-3-11 | `quay.io/hummingbird/python:3.11` | Tested |
-| python-3-12 | `quay.io/hummingbird/python:3.12` | Tested |
-| python-3-14 | `quay.io/hummingbird/python:3.14` | Tested |
-| nodejs-20 | `quay.io/hummingbird/nodejs:20` | Tested |
-| nodejs-24 | `quay.io/hummingbird/nodejs:24` | Tested |
+| [python-3-13](docs/test-details.md#python-3-13) | `quay.io/hummingbird/python:3.13` | Tested |
+| [nodejs-22](docs/test-details.md#nodejs-22) | `quay.io/hummingbird/nodejs:22` | Tested |
+| [python-3-11](docs/test-details.md#python-3-11) | `quay.io/hummingbird/python:3.11` | Tested |
+| [python-3-12](docs/test-details.md#python-3-12) | `quay.io/hummingbird/python:3.12` | Tested |
+| [python-3-14](docs/test-details.md#python-3-14) | `quay.io/hummingbird/python:3.14` | Tested |
+| [nodejs-20](docs/test-details.md#nodejs-20) | `quay.io/hummingbird/nodejs:20` | Tested |
+| [nodejs-24](docs/test-details.md#nodejs-24) | `quay.io/hummingbird/nodejs:24` | Tested |
 | nodejs-25 | `quay.io/hummingbird/nodejs:25` | |
-| go-1-25 | `quay.io/hummingbird/go:1.25` | Tested |
-| go-1-26 | `quay.io/hummingbird/go:1.26` | Tested |
-| rust | `quay.io/hummingbird/rust:latest` | Tested |
-| php | `quay.io/hummingbird/php:latest` | Tested |
+| [go-1-25](docs/test-details.md#go-1-25) | `quay.io/hummingbird/go:1.25` | Tested |
+| [go-1-26](docs/test-details.md#go-1-26) | `quay.io/hummingbird/go:1.26` | Tested |
+| [rust](docs/test-details.md#rust) | `quay.io/hummingbird/rust:latest` | Tested |
+| [php](docs/test-details.md#php) | `quay.io/hummingbird/php:latest` | Tested |
 | ruby-3-3 | `quay.io/hummingbird/ruby:3.3` | |
-| ruby-3-4 | `quay.io/hummingbird/ruby:3.4` | Tested |
+| [ruby-3-4](docs/test-details.md#ruby-3-4) | `quay.io/hummingbird/ruby:3.4` | Tested |
 | ruby-4-0 | `quay.io/hummingbird/ruby:4.0` | |
-| openjdk-21 | `quay.io/hummingbird/openjdk:21` | Tested |
+| [openjdk-21](docs/test-details.md#openjdk-21) | `quay.io/hummingbird/openjdk:21` | Tested |
 | openjdk-25 | `quay.io/hummingbird/openjdk:25` | |
 
 ### .NET / ASP.NET
@@ -94,16 +94,16 @@ TEST_ENGINE=docker bash phase1-tests/curl/test.sh
 
 | Image | Registry | Status |
 |-------|----------|--------|
-| mariadb-10-11 | `quay.io/hummingbird/mariadb:10.11` | Tested |
+| [mariadb-10-11](docs/test-details.md#mariadb-10-11) | `quay.io/hummingbird/mariadb:10.11` | Tested |
 | mariadb-11-8 | `quay.io/hummingbird/mariadb:11.8` | |
-| postgresql | `quay.io/hummingbird/postgresql:latest` | Tested |
-| valkey | `quay.io/hummingbird/valkey:latest` | Tested |
+| [postgresql](docs/test-details.md#postgresql) | `quay.io/hummingbird/postgresql:latest` | Tested |
+| [valkey](docs/test-details.md#valkey) | `quay.io/hummingbird/valkey:latest` | Tested |
 
 ### Application Servers
 
 | Image | Registry | Status |
 |-------|----------|--------|
-| tomcat-10 | `quay.io/hummingbird/tomcat:10` | Tested |
+| [tomcat-10](docs/test-details.md#tomcat-10) | `quay.io/hummingbird/tomcat:10` | Tested |
 | tomcat-11 | `quay.io/hummingbird/tomcat:11` | |
 
 ### Specialized
@@ -220,6 +220,7 @@ See [docs/QUAY-CREDENTIALS-SETUP.md](docs/QUAY-CREDENTIALS-SETUP.md) for setup i
 
 ## Additional Documentation
 
+- [docs/test-details.md](docs/test-details.md) — what each image test covers
 - [docs/PREREQUISITES.md](docs/PREREQUISITES.md) — environment setup
 - [docs/QUAY-CREDENTIALS-SETUP.md](docs/QUAY-CREDENTIALS-SETUP.md) — registry credentials
 - [docs/hummingbird-test-plan.md](docs/hummingbird-test-plan.md) — overall testing strategy
