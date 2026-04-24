@@ -220,6 +220,20 @@ What each Phase 1 test covers, organized by image. Every image runs 4 smoke test
 
 ---
 
+### nodejs-25
+
+**Image:** `quay.io/hummingbird/nodejs:25`
+**Script:** [phase1-tests/nodejs-25/test.sh](../phase1-tests/nodejs-25/test.sh)
+
+| # | Test | What it verifies |
+|---|------|------------------|
+| 1 | Version check | Runs `node --version` and confirms "v25.x" |
+| 2 | Inline execution | Runs `node -e "console.log('Hello, World!')"` |
+| 3 | Built-in modules | Imports `os` module and checks `os.platform()` returns "linux" |
+| 4 | Script execution | Mounts and runs a test script file that exercises core features |
+
+---
+
 ### go-1-25
 
 **Image:** `quay.io/hummingbird/go:1.25`
@@ -262,6 +276,20 @@ What each Phase 1 test covers, organized by image. Every image runs 4 smoke test
 
 ---
 
+### ruby-3-3
+
+**Image:** `quay.io/hummingbird/ruby:3.3`
+**Script:** [phase1-tests/ruby-3-3/test.sh](../phase1-tests/ruby-3-3/test.sh)
+
+| # | Test | What it verifies |
+|---|------|------------------|
+| 1 | Version check | Runs `ruby --version` and confirms "ruby 3.3" |
+| 2 | Inline execution | Runs `ruby -e "puts 'Hello, World!'"` |
+| 3 | Standard library | Imports `json` and serializes a hash |
+| 4 | Script execution | Mounts and runs a test script file that exercises core features |
+
+---
+
 ### ruby-3-4
 
 **Image:** `quay.io/hummingbird/ruby:3.4`
@@ -270,6 +298,20 @@ What each Phase 1 test covers, organized by image. Every image runs 4 smoke test
 | # | Test | What it verifies |
 |---|------|------------------|
 | 1 | Version check | Runs `ruby --version` and confirms "ruby 3.4" |
+| 2 | Inline execution | Runs `ruby -e "puts 'Hello, World!'"` |
+| 3 | Standard library | Imports `json` and serializes a hash |
+| 4 | Script execution | Mounts and runs a test script file that exercises core features |
+
+---
+
+### ruby-4-0
+
+**Image:** `quay.io/hummingbird/ruby:4.0`
+**Script:** [phase1-tests/ruby-4-0/test.sh](../phase1-tests/ruby-4-0/test.sh)
+
+| # | Test | What it verifies |
+|---|------|------------------|
+| 1 | Version check | Runs `ruby --version` and confirms "ruby 4.0" |
 | 2 | Inline execution | Runs `ruby -e "puts 'Hello, World!'"` |
 | 3 | Standard library | Imports `json` and serializes a hash |
 | 4 | Script execution | Mounts and runs a test script file that exercises core features |
@@ -290,6 +332,20 @@ What each Phase 1 test covers, organized by image. Every image runs 4 smoke test
 
 ---
 
+### openjdk-25
+
+**Image:** `quay.io/hummingbird/openjdk:25`
+**Script:** [phase1-tests/openjdk-25/test.sh](../phase1-tests/openjdk-25/test.sh)
+
+| # | Test | What it verifies |
+|---|------|------------------|
+| 1 | Java version | Runs `java -version` and confirms "25" |
+| 2 | Compiler version | Runs `javac -version` and confirms "25" |
+| 3 | Compile and run | Mounts a `.java` file, compiles with `javac`, and runs it |
+| 4 | JDK tools | Runs `jar --version` to verify JDK tools are available |
+
+---
+
 ### php
 
 **Image:** `quay.io/hummingbird/php:latest`
@@ -304,6 +360,134 @@ What each Phase 1 test covers, organized by image. Every image runs 4 smoke test
 
 ---
 
+## .NET / ASP.NET
+
+### aspnet-runtime-8-0
+
+**Image:** `quay.io/hummingbird/aspnet-runtime:8.0`
+**Script:** [phase1-tests/aspnet-runtime-8-0/test.sh](../phase1-tests/aspnet-runtime-8-0/test.sh)
+
+| # | Test | What it verifies |
+|---|------|------------------|
+| 1 | Version check | Runs `dotnet --info` and confirms "8.0" |
+| 2 | Help output | Runs `dotnet --help` and checks for "Usage" text |
+| 3 | List runtimes | Runs `dotnet --list-runtimes` and confirms `Microsoft.AspNetCore.App` |
+| 4 | Version command | Runs `dotnet --version` and confirms it completes without crash |
+
+---
+
+### aspnet-runtime-9-0
+
+**Image:** `quay.io/hummingbird/aspnet-runtime:9.0`
+**Script:** [phase1-tests/aspnet-runtime-9-0/test.sh](../phase1-tests/aspnet-runtime-9-0/test.sh)
+
+| # | Test | What it verifies |
+|---|------|------------------|
+| 1 | Version check | Runs `dotnet --info` and confirms "9.0" |
+| 2 | Help output | Runs `dotnet --help` and checks for "Usage" text |
+| 3 | List runtimes | Runs `dotnet --list-runtimes` and confirms `Microsoft.AspNetCore.App` |
+| 4 | Version command | Runs `dotnet --version` and confirms it completes without crash |
+
+---
+
+### aspnet-runtime-10-0
+
+**Image:** `quay.io/hummingbird/aspnet-runtime:10.0`
+**Script:** [phase1-tests/aspnet-runtime-10-0/test.sh](../phase1-tests/aspnet-runtime-10-0/test.sh)
+
+| # | Test | What it verifies |
+|---|------|------------------|
+| 1 | Version check | Runs `dotnet --info` and confirms "10.0" |
+| 2 | Help output | Runs `dotnet --help` and checks for "Usage" text |
+| 3 | List runtimes | Runs `dotnet --list-runtimes` and confirms `Microsoft.AspNetCore.App` |
+| 4 | Version command | Runs `dotnet --version` and confirms it completes without crash |
+
+---
+
+### dotnet-runtime-8-0
+
+**Image:** `quay.io/hummingbird/dotnet-runtime:8.0`
+**Script:** [phase1-tests/dotnet-runtime-8-0/test.sh](../phase1-tests/dotnet-runtime-8-0/test.sh)
+
+| # | Test | What it verifies |
+|---|------|------------------|
+| 1 | Version check | Runs `dotnet --info` and confirms "8.0" |
+| 2 | Help output | Runs `dotnet --help` and checks for "Usage" text |
+| 3 | List runtimes | Runs `dotnet --list-runtimes` and confirms `Microsoft.NETCore.App` |
+| 4 | Version command | Runs `dotnet --version` and confirms it completes without crash |
+
+---
+
+### dotnet-runtime-9-0
+
+**Image:** `quay.io/hummingbird/dotnet-runtime:9.0`
+**Script:** [phase1-tests/dotnet-runtime-9-0/test.sh](../phase1-tests/dotnet-runtime-9-0/test.sh)
+
+| # | Test | What it verifies |
+|---|------|------------------|
+| 1 | Version check | Runs `dotnet --info` and confirms "9.0" |
+| 2 | Help output | Runs `dotnet --help` and checks for "Usage" text |
+| 3 | List runtimes | Runs `dotnet --list-runtimes` and confirms `Microsoft.NETCore.App` |
+| 4 | Version command | Runs `dotnet --version` and confirms it completes without crash |
+
+---
+
+### dotnet-runtime-10-0
+
+**Image:** `quay.io/hummingbird/dotnet-runtime:10.0`
+**Script:** [phase1-tests/dotnet-runtime-10-0/test.sh](../phase1-tests/dotnet-runtime-10-0/test.sh)
+
+| # | Test | What it verifies |
+|---|------|------------------|
+| 1 | Version check | Runs `dotnet --info` and confirms "10.0" |
+| 2 | Help output | Runs `dotnet --help` and checks for "Usage" text |
+| 3 | List runtimes | Runs `dotnet --list-runtimes` and confirms `Microsoft.NETCore.App` |
+| 4 | Version command | Runs `dotnet --version` and confirms it completes without crash |
+
+---
+
+### dotnet-sdk-8-0
+
+**Image:** `quay.io/hummingbird/dotnet-sdk:8.0`
+**Script:** [phase1-tests/dotnet-sdk-8-0/test.sh](../phase1-tests/dotnet-sdk-8-0/test.sh)
+
+| # | Test | What it verifies |
+|---|------|------------------|
+| 1 | SDK version | Runs `dotnet --version` and confirms "8.0" |
+| 2 | List SDKs | Runs `dotnet --list-sdks` and confirms "8.0" is listed |
+| 3 | Create and build | Creates a console project with `dotnet new` and builds it |
+| 4 | Run project | Creates and runs a console project, expects "Hello, World!" output |
+
+---
+
+### dotnet-sdk-9-0
+
+**Image:** `quay.io/hummingbird/dotnet-sdk:9.0`
+**Script:** [phase1-tests/dotnet-sdk-9-0/test.sh](../phase1-tests/dotnet-sdk-9-0/test.sh)
+
+| # | Test | What it verifies |
+|---|------|------------------|
+| 1 | SDK version | Runs `dotnet --version` and confirms "9.0" |
+| 2 | List SDKs | Runs `dotnet --list-sdks` and confirms "9.0" is listed |
+| 3 | Create and build | Creates a console project with `dotnet new` and builds it |
+| 4 | Run project | Creates and runs a console project, expects "Hello, World!" output |
+
+---
+
+### dotnet-sdk-10-0
+
+**Image:** `quay.io/hummingbird/dotnet-sdk:10.0`
+**Script:** [phase1-tests/dotnet-sdk-10-0/test.sh](../phase1-tests/dotnet-sdk-10-0/test.sh)
+
+| # | Test | What it verifies |
+|---|------|------------------|
+| 1 | SDK version | Runs `dotnet --version` and confirms "10.0" |
+| 2 | List SDKs | Runs `dotnet --list-sdks` and confirms "10.0" is listed |
+| 3 | Create and build | Creates a console project with `dotnet new` and builds it |
+| 4 | Run project | Creates and runs a console project, expects "Hello, World!" output |
+
+---
+
 ## Databases
 
 ### mariadb-10-11
@@ -315,6 +499,20 @@ What each Phase 1 test covers, organized by image. Every image runs 4 smoke test
 |---|------|------------------|
 | 1 | Container startup | Starts MariaDB with a root password and waits for readiness |
 | 2 | Version check | Queries `SELECT VERSION()` and confirms "10.11" or "MariaDB" |
+| 3 | SQL operations | Creates a database/table, inserts a row, and queries it back |
+| 4 | Log health check | Checks container logs for fatal/crash errors |
+
+---
+
+### mariadb-11-8
+
+**Image:** `quay.io/hummingbird/mariadb:11.8`
+**Script:** [phase1-tests/mariadb-11-8/test.sh](../phase1-tests/mariadb-11-8/test.sh)
+
+| # | Test | What it verifies |
+|---|------|------------------|
+| 1 | Container startup | Starts MariaDB with a root password and waits for readiness |
+| 2 | Version check | Queries `SELECT VERSION()` and confirms "11.8" or "MariaDB" |
 | 3 | SQL operations | Creates a database/table, inserts a row, and queries it back |
 | 4 | Log health check | Checks container logs for fatal/crash errors |
 
@@ -361,3 +559,47 @@ What each Phase 1 test covers, organized by image. Every image runs 4 smoke test
 | 2 | HTTP response | Fetches the root URL and checks for HTTP 200 or 404 (with retry) |
 | 3 | Version in logs | Checks container logs for Tomcat/Catalina startup messages |
 | 4 | Log health check | Checks container logs for SEVERE/fatal errors |
+
+---
+
+### tomcat-11
+
+**Image:** `quay.io/hummingbird/tomcat:11`
+**Script:** [phase1-tests/tomcat-11/test.sh](../phase1-tests/tomcat-11/test.sh)
+
+| # | Test | What it verifies |
+|---|------|------------------|
+| 1 | Container startup | Starts Tomcat and confirms the container is running |
+| 2 | HTTP response | Fetches the root URL and checks for HTTP 200 or 404 (with retry) |
+| 3 | Version in logs | Checks container logs for Tomcat/Catalina startup messages |
+| 4 | Log health check | Checks container logs for SEVERE/fatal errors |
+
+---
+
+## Specialized
+
+### core-runtime
+
+**Image:** `quay.io/hummingbird/core-runtime:latest`
+**Script:** [phase1-tests/core-runtime/test.sh](../phase1-tests/core-runtime/test.sh)
+
+| # | Test | What it verifies |
+|---|------|------------------|
+| 1 | OS info | Reads `/etc/os-release` and confirms "Hummingbird" |
+| 2 | Bash execution | Runs `bash -c "echo 'Hello, World!'"` |
+| 3 | Coreutils | Lists root filesystem and checks for `usr` and `etc` directories |
+| 4 | File operations | Writes a file to `/tmp` and reads it back |
+
+---
+
+### xcaddy
+
+**Image:** `quay.io/hummingbird/xcaddy:latest`
+**Script:** [phase1-tests/xcaddy/test.sh](../phase1-tests/xcaddy/test.sh)
+
+| # | Test | What it verifies |
+|---|------|------------------|
+| 1 | Version check | Runs `xcaddy version` and confirms output is non-empty |
+| 2 | Help output | Runs `xcaddy help` and checks for usage information |
+| 3 | Build subcommand | Runs `xcaddy build --help` to confirm the build command is available |
+| 4 | Go toolchain | Runs `go version` to verify Go is available (required by xcaddy) |

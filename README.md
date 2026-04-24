@@ -65,37 +65,37 @@ TEST_ENGINE=docker bash phase1-tests/curl/test.sh
 | [python-3-14](docs/test-details.md#python-3-14) | `quay.io/hummingbird/python:3.14` | Tested |
 | [nodejs-20](docs/test-details.md#nodejs-20) | `quay.io/hummingbird/nodejs:20` | Tested |
 | [nodejs-24](docs/test-details.md#nodejs-24) | `quay.io/hummingbird/nodejs:24` | Tested |
-| nodejs-25 | `quay.io/hummingbird/nodejs:25` | Tested |
+| [nodejs-25](docs/test-details.md#nodejs-25) | `quay.io/hummingbird/nodejs:25` | Tested |
 | [go-1-25](docs/test-details.md#go-1-25) | `quay.io/hummingbird/go:1.25` | Tested |
 | [go-1-26](docs/test-details.md#go-1-26) | `quay.io/hummingbird/go:1.26` | Tested |
 | [rust](docs/test-details.md#rust) | `quay.io/hummingbird/rust:latest` | Tested |
 | [php](docs/test-details.md#php) | `quay.io/hummingbird/php:latest` | Tested |
-| ruby-3-3 | `quay.io/hummingbird/ruby:3.3` | Tested |
+| [ruby-3-3](docs/test-details.md#ruby-3-3) | `quay.io/hummingbird/ruby:3.3` | Tested |
 | [ruby-3-4](docs/test-details.md#ruby-3-4) | `quay.io/hummingbird/ruby:3.4` | Tested |
-| ruby-4-0 | `quay.io/hummingbird/ruby:4.0` | Tested |
+| [ruby-4-0](docs/test-details.md#ruby-4-0) | `quay.io/hummingbird/ruby:4.0` | Tested |
 | [openjdk-21](docs/test-details.md#openjdk-21) | `quay.io/hummingbird/openjdk:21` | Tested |
-| openjdk-25 | `quay.io/hummingbird/openjdk:25` | Tested |
+| [openjdk-25](docs/test-details.md#openjdk-25) | `quay.io/hummingbird/openjdk:25` | Tested |
 
 ### .NET / ASP.NET
 
 | Image | Registry | Status |
 |-------|----------|--------|
-| aspnet-runtime-8-0 | `quay.io/hummingbird/aspnet-runtime:8.0` | Tested |
-| aspnet-runtime-9-0 | `quay.io/hummingbird/aspnet-runtime:9.0` | Tested |
-| aspnet-runtime-10-0 | `quay.io/hummingbird/aspnet-runtime:10.0` | Tested |
-| dotnet-runtime-8-0 | `quay.io/hummingbird/dotnet-runtime:8.0` | Tested |
-| dotnet-runtime-9-0 | `quay.io/hummingbird/dotnet-runtime:9.0` | Tested |
-| dotnet-runtime-10-0 | `quay.io/hummingbird/dotnet-runtime:10.0` | Tested |
-| dotnet-sdk-8-0 | `quay.io/hummingbird/dotnet-sdk:8.0` | Tested |
-| dotnet-sdk-9-0 | `quay.io/hummingbird/dotnet-sdk:9.0` | Tested |
-| dotnet-sdk-10-0 | `quay.io/hummingbird/dotnet-sdk:10.0` | Tested |
+| [aspnet-runtime-8-0](docs/test-details.md#aspnet-runtime-8-0) | `quay.io/hummingbird/aspnet-runtime:8.0` | Tested |
+| [aspnet-runtime-9-0](docs/test-details.md#aspnet-runtime-9-0) | `quay.io/hummingbird/aspnet-runtime:9.0` | Tested |
+| [aspnet-runtime-10-0](docs/test-details.md#aspnet-runtime-10-0) | `quay.io/hummingbird/aspnet-runtime:10.0` | Tested |
+| [dotnet-runtime-8-0](docs/test-details.md#dotnet-runtime-8-0) | `quay.io/hummingbird/dotnet-runtime:8.0` | Tested |
+| [dotnet-runtime-9-0](docs/test-details.md#dotnet-runtime-9-0) | `quay.io/hummingbird/dotnet-runtime:9.0` | Tested |
+| [dotnet-runtime-10-0](docs/test-details.md#dotnet-runtime-10-0) | `quay.io/hummingbird/dotnet-runtime:10.0` | Tested |
+| [dotnet-sdk-8-0](docs/test-details.md#dotnet-sdk-8-0) | `quay.io/hummingbird/dotnet-sdk:8.0` | Tested |
+| [dotnet-sdk-9-0](docs/test-details.md#dotnet-sdk-9-0) | `quay.io/hummingbird/dotnet-sdk:9.0` | Tested |
+| [dotnet-sdk-10-0](docs/test-details.md#dotnet-sdk-10-0) | `quay.io/hummingbird/dotnet-sdk:10.0` | Tested |
 
 ### Databases
 
 | Image | Registry | Status |
 |-------|----------|--------|
 | [mariadb-10-11](docs/test-details.md#mariadb-10-11) | `quay.io/hummingbird/mariadb:10.11` | Tested |
-| mariadb-11-8 | `quay.io/hummingbird/mariadb:11.8` | Tested |
+| [mariadb-11-8](docs/test-details.md#mariadb-11-8) | `quay.io/hummingbird/mariadb:11.8` | Tested |
 | [postgresql](docs/test-details.md#postgresql) | `quay.io/hummingbird/postgresql:latest` | Tested |
 | [valkey](docs/test-details.md#valkey) | `quay.io/hummingbird/valkey:latest` | Tested |
 
@@ -104,15 +104,15 @@ TEST_ENGINE=docker bash phase1-tests/curl/test.sh
 | Image | Registry | Status |
 |-------|----------|--------|
 | [tomcat-10](docs/test-details.md#tomcat-10) | `quay.io/hummingbird/tomcat:10` | Tested |
-| tomcat-11 | `quay.io/hummingbird/tomcat:11` | Tested |
+| [tomcat-11](docs/test-details.md#tomcat-11) | `quay.io/hummingbird/tomcat:11` | Tested |
 
 ### Specialized
 
 | Image | Registry | Status |
 |-------|----------|--------|
-| core-runtime | `quay.io/hummingbird/core-runtime:latest` | Tested |
+| [core-runtime](docs/test-details.md#core-runtime) | `quay.io/hummingbird/core-runtime:latest` | Tested |
 | bootc-os | `quay.io/hummingbird/bootc-os:latest` | Private |
-| xcaddy | `quay.io/hummingbird/xcaddy:latest` | Tested |
+| [xcaddy](docs/test-details.md#xcaddy) | `quay.io/hummingbird/xcaddy:latest` | Tested |
 
 ---
 
