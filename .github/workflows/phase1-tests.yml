@@ -562,10 +562,350 @@ jobs:
           chmod +x test.sh
           ./test.sh
 
+  test-nodejs-25:
+    name: Test nodejs-25 Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+      - name: Run nodejs-25 basic tests
+        working-directory: phase1-tests/nodejs-25
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-ruby-3-3:
+    name: Test ruby-3-3 Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+      - name: Run ruby-3-3 basic tests
+        working-directory: phase1-tests/ruby-3-3
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-ruby-4-0:
+    name: Test ruby-4-0 Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+      - name: Run ruby-4-0 basic tests
+        working-directory: phase1-tests/ruby-4-0
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-openjdk-25:
+    name: Test openjdk-25 Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+      - name: Run openjdk-25 basic tests
+        working-directory: phase1-tests/openjdk-25
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-mariadb-11-8:
+    name: Test mariadb-11-8 Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+      - name: Run mariadb-11-8 basic tests
+        working-directory: phase1-tests/mariadb-11-8
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-tomcat-11:
+    name: Test tomcat-11 Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+      - name: Run tomcat-11 basic tests
+        working-directory: phase1-tests/tomcat-11
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-aspnet-runtime-8-0:
+    name: Test aspnet-runtime-8-0 Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+      - name: Run aspnet-runtime-8-0 basic tests
+        working-directory: phase1-tests/aspnet-runtime-8-0
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-aspnet-runtime-9-0:
+    name: Test aspnet-runtime-9-0 Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+      - name: Run aspnet-runtime-9-0 basic tests
+        working-directory: phase1-tests/aspnet-runtime-9-0
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-aspnet-runtime-10-0:
+    name: Test aspnet-runtime-10-0 Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+      - name: Run aspnet-runtime-10-0 basic tests
+        working-directory: phase1-tests/aspnet-runtime-10-0
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-dotnet-runtime-8-0:
+    name: Test dotnet-runtime-8-0 Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+      - name: Run dotnet-runtime-8-0 basic tests
+        working-directory: phase1-tests/dotnet-runtime-8-0
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-dotnet-runtime-9-0:
+    name: Test dotnet-runtime-9-0 Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+      - name: Run dotnet-runtime-9-0 basic tests
+        working-directory: phase1-tests/dotnet-runtime-9-0
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-dotnet-runtime-10-0:
+    name: Test dotnet-runtime-10-0 Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+      - name: Run dotnet-runtime-10-0 basic tests
+        working-directory: phase1-tests/dotnet-runtime-10-0
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-dotnet-sdk-8-0:
+    name: Test dotnet-sdk-8-0 Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+      - name: Run dotnet-sdk-8-0 basic tests
+        working-directory: phase1-tests/dotnet-sdk-8-0
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-dotnet-sdk-9-0:
+    name: Test dotnet-sdk-9-0 Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+      - name: Run dotnet-sdk-9-0 basic tests
+        working-directory: phase1-tests/dotnet-sdk-9-0
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-dotnet-sdk-10-0:
+    name: Test dotnet-sdk-10-0 Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+      - name: Run dotnet-sdk-10-0 basic tests
+        working-directory: phase1-tests/dotnet-sdk-10-0
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-core-runtime:
+    name: Test core-runtime Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+      - name: Run core-runtime basic tests
+        working-directory: phase1-tests/core-runtime
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
+  test-xcaddy:
+    name: Test xcaddy Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+      - name: Run xcaddy basic tests
+        working-directory: phase1-tests/xcaddy
+        env:
+          TEST_ENGINE: docker
+        run: |
+          chmod +x test.sh
+          ./test.sh
+
   summary:
     name: Phase 1 Complete
     runs-on: ubuntu-latest
-    needs: [test-curl, test-jq, test-nginx, test-python, test-nodejs, test-git, test-httpd, test-caddy, test-haproxy, test-python-3-11, test-python-3-12, test-nodejs-20, test-go-1-25, test-postgresql, test-valkey, test-memcached, test-python-3-14, test-nodejs-24, test-go-1-26, test-rust, test-ruby-3-4, test-openjdk-21, test-mariadb-10-11, test-php, test-tomcat-10]
+    needs: [test-curl, test-jq, test-nginx, test-python, test-nodejs, test-git, test-httpd, test-caddy, test-haproxy, test-python-3-11, test-python-3-12, test-nodejs-20, test-go-1-25, test-postgresql, test-valkey, test-memcached, test-python-3-14, test-nodejs-24, test-go-1-26, test-rust, test-ruby-3-4, test-openjdk-21, test-mariadb-10-11, test-php, test-tomcat-10, test-nodejs-25, test-ruby-3-3, test-ruby-4-0, test-openjdk-25, test-mariadb-11-8, test-tomcat-11, test-aspnet-runtime-8-0, test-aspnet-runtime-9-0, test-aspnet-runtime-10-0, test-dotnet-runtime-8-0, test-dotnet-runtime-9-0, test-dotnet-runtime-10-0, test-dotnet-sdk-8-0, test-dotnet-sdk-9-0, test-dotnet-sdk-10-0, test-core-runtime, test-xcaddy]
     steps:
       - name: Final summary
         run: |
@@ -573,5 +913,5 @@ jobs:
           echo "Phase 1 Tests Complete!"
           echo "=========================================="
           echo ""
-          echo "All 25 images tested successfully"
-          echo "Basic tests (100 tests): PASSED"
+          echo "All 42 images tested successfully"
+          echo "Basic tests (168 tests): PASSED"
